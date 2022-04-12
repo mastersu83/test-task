@@ -1,5 +1,5 @@
-import L, { LatLngTuple } from "leaflet";
 import { createControlComponent } from "@react-leaflet/core";
+import L, { LatLngTuple } from "leaflet";
 
 const createRoutineMachineLayer = (props: any) => {
   console.log(props);

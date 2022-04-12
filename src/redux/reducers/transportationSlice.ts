@@ -1,8 +1,13 @@
-import { TransportationType } from "../../types/transportationType";
+import {
+  CoordinatesType,
+  TransportationType,
+} from "../../types/transportationType";
 import { createSlice } from "@reduxjs/toolkit";
+import { LatLngTuple } from "leaflet";
 
 type InitialStateType = {
   transportations: TransportationType[];
+  coordinates: CoordinatesType;
 };
 
 const initialState: InitialStateType = {
@@ -73,99 +78,28 @@ const initialState: InitialStateType = {
       },
     },
   ],
+  coordinates: {
+    loading: [0, 0],
+    unLoading: [0, 0],
+  },
 };
 
 const transportationSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    getMoreProducts(state: InitialStateType, action: any) {
-      return state;
+    getLoadingCoordinates(state: InitialStateType, action: any) {
+      state.coordinates.loading = action.payload;
+    },
+    getUnLoadingCoordinates(state: InitialStateType, action: any) {
+      state.coordinates.unLoading = action.payload;
     },
   },
 
-  // extraReducers: {
-  //   [getCategoryProducts.pending.type]: (state: InitialStateType) => {
-  //     state.allProductsIdSuccess = false;
-  //   },
-  //   [getCategoryProducts.fulfilled.type]: (
-  //       state: initialStateType,
-  //       action: PayloadAction<IProductsType[]>
-  //   ) => {
-  //     if (
-  //         !action.payload.some((prod) =>
-  //             state.allProductsId.some((p) => p === prod.id)
-  //         )
-  //     ) {
-  //       state.allProductsId = action.payload.map((prod) => prod.id);
-  //       state.products = state.products.concat(action.payload);
-  //       state.allProductsIdSuccess = true;
-  //     } else if (!state.products.length) {
-  //       state.allProductsId = action.payload.map((prod) => prod.id);
-  //       state.products = action.payload;
-  //       state.allProductsIdSuccess = true;
-  //     }
-  //   },
-  //
-  //   [getProductsImg.fulfilled.type]: (
-  //       state: initialStateType,
-  //       action: PayloadAction<IProductsImgType[]>
-  //   ) => {
-  //     state.products = state.products.map((prod) => ({
-  //       ...prod,
-  //       images: prod.images
-  //           ? prod.images
-  //           : action.payload.filter((img) => img.product_id === prod.id),
-  //     }));
-  //     state.allProductsIdSuccess = false;
-  //   },
-  //
-  //   [getProductsPrice.fulfilled.type]: (
-  //       state: initialStateType,
-  //       action: PayloadAction<IProductsPriceType[]>
-  //   ) => {
-  //     state.products = state.products.map((prod) => ({
-  //       ...prod,
-  //       price: prod.price
-  //           ? prod.price
-  //           : action.payload.filter((price) => price.product_id === prod.id),
-  //     }));
-  //     // getProductVariationPropertyValues(3);
-  //     state.allProductsIdSuccess = false;
-  //     state.allProductsSuccess = true;
-  //   },
-  //   [getProductVariationPropertyValues.fulfilled.type]: (
-  //       state: initialStateType,
-  //       action: PayloadAction<IProductVariationPropertyValuesType[]>
-  //   ) => {
-  //     state.products = state.products.map((prod) => ({
-  //       ...prod,
-  //       price: prod.price.map((price) => ({
-  //         ...price,
-  //         productVariationPropertyValues: action.payload.filter(
-  //             (property) => price.id === property.product_variation_id
-  //         ),
-  //       })),
-  //     }));
-  //     state.allProductsIdSuccess = false;
-  //   },
-  //   [getProductVariationProperties.fulfilled.type]: (
-  //       state: initialStateType,
-  //       action: PayloadAction<IProductVariationPropertiesType[]>
-  //   ) => {
-  //     state.productVariationProperties = action.payload;
-  //   },
-  //   [getProductVariationPropertyListValues.fulfilled.type]: (
-  //       state: initialStateType,
-  //       action: PayloadAction<IProductVariationPropertiesListType[]>
-  //   ) => {
-  //     state.productVariationPropertyListValues = action.payload;
-  //   },
-  // },
+  extraReducers: {},
 });
 
-// export const transportationReducer = (state = initialState, action: any) => {
-//   return state;
-// };
+export const { getLoadingCoordinates, getUnLoadingCoordinates } =
+  transportationSlice.actions;
 
 export default transportationSlice.reducer;

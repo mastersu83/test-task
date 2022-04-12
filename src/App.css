@@ -15,11 +15,23 @@
 
 .resizeTable {
   width: 100%;
-  min-width: min-content;
+  min-width: 650px;
   border-right: 5px solid #7e92f6;
 }
 
 .ant-tabs-tabpane {
   display: flex;
   min-width: 430px;
+}
+
+.active {
+  background-color: #eae9e9;
+}
+
+.row {
+  cursor: pointer;
+}
+
+.ant-table-cell {
+  min-width: 215px;
 }
