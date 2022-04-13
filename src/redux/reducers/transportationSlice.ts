@@ -3,7 +3,6 @@ import {
   TransportationType,
 } from "../../types/transportationType";
 import { createSlice } from "@reduxjs/toolkit";
-import { LatLngTuple } from "leaflet";
 
 type InitialStateType = {
   transportations: TransportationType[];
@@ -31,7 +30,7 @@ const initialState: InitialStateType = {
       transportation: "Заявка на перевозку №2",
       loadingAddress: {
         name: "Пункт загрузки №2",
-        loading: [44.0593595, 43.0592834],
+        loading: [47.0593595, 43.0592834],
       },
       unloadingAddress: {
         name: "Пункт разгрузки №2",

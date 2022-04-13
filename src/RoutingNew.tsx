@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import { useMap } from "react-leaflet";
-import L, { LatLngTuple } from "leaflet";
+import L from "leaflet";
 import { CoordinatesType } from "./types/transportationType";
 
 type PropsType = {
@@ -10,14 +10,10 @@ type PropsType = {
 const RoutingNew: FC<PropsType> = ({ coordinates }) => {
   const map = useMap();
 
-  console.log(coordinates);
-
-  const trek = true;
-
   useEffect(() => {
     if (!map) return;
-    L.Routing.control({
-      waypoints: trek && [
+    const routingControl = L.Routing.control({
+      waypoints: [
         L.latLng(coordinates.loading),
         L.latLng(coordinates.unLoading),
       ],
@@ -26,7 +22,10 @@ const RoutingNew: FC<PropsType> = ({ coordinates }) => {
       routeWhileDragging: false,
       fitSelectedRoutes: true,
     }).addTo(map);
-  }, [map]);
+    return () => {
+      map.removeControl(routingControl);
+    };
+  }, [map, coordinates]);
   return null;
 };
 

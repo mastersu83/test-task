@@ -1,7 +1,6 @@
-import { Col, Divider, Row, Table, Typography } from "antd";
-import SelectTask from "./SelectTask";
+import { Col, Divider, Row, Typography } from "antd";
 import { useAppDispatch, useAppSelector } from "./hooks/appHooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   getLoadingCoordinates,
   getUnLoadingCoordinates,
@@ -15,14 +14,24 @@ const CustomTable = () => {
     (state) => state.transportationSlice
   );
 
-  const [activeTransportation, setActiveTransportation] = useState<number>(1);
+  const [activeTransportation, setActiveTransportation] = useState<number>();
 
-  useEffect(() => {
-    dispatch(getLoadingCoordinates(transportations[0].loadingAddress.loading));
-    dispatch(
-      getUnLoadingCoordinates(transportations[0].unloadingAddress.unloading)
-    );
-  }, []);
+  const onClickTransport = (
+    id: number,
+    loading: number[],
+    unloading: number[]
+  ) => {
+    setActiveTransportation(id);
+    dispatch(getLoadingCoordinates(loading));
+    dispatch(getUnLoadingCoordinates(unloading));
+  };
+
+  // useEffect(() => {
+  //   dispatch(getLoadingCoordinates(transportations[0].loadingAddress.loading));
+  //   dispatch(
+  //     getUnLoadingCoordinates(transportations[0].unloadingAddress.unloading)
+  //   );
+  // }, []);
 
   return (
     <>
@@ -55,7 +64,13 @@ const CustomTable = () => {
       <Divider style={{ margin: "10px 0" }} />
       {transportations.map((tr) => (
         <Row
-          onClick={() => setActiveTransportation(tr.id)}
+          onClick={() =>
+            onClickTransport(
+              tr.id,
+              tr.loadingAddress.loading,
+              tr.unloadingAddress.unloading
+            )
+          }
           className={activeTransportation === tr.id ? "active" : ""}
           align={"middle"}
           key={tr.id}
@@ -85,7 +100,8 @@ const CustomTable = () => {
             }}
             span={8}
           >
-            <SelectTask transportations={tr} loading />
+            {tr.loadingAddress.name}
+            {/*<SelectTask transportations={tr} loading />*/}
           </Col>
           <Col
             style={{
@@ -95,7 +111,8 @@ const CustomTable = () => {
             }}
             span={8}
           >
-            <SelectTask transportations={tr} />
+            {tr.unloadingAddress.name}
+            {/*<SelectTask transportations={tr} />*/}
           </Col>
         </Row>
       ))}
