@@ -21,3 +21,8 @@ export type CoordinatesType = {
   loading: LatLngTuple;
   unLoading: LatLngTuple;
 };
+
+export type AddressesCoordinatesType = {
+  name: string;
+  coordinates: number[];
+};
