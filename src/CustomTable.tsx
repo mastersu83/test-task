@@ -5,6 +5,7 @@ import {
   getLoadingCoordinates,
   getUnLoadingCoordinates,
 } from "./redux/reducers/transportationSlice";
+import SelectTask from "./SelectTask";
 
 const style = { padding: "8px 8px" };
 
@@ -64,13 +65,6 @@ const CustomTable = () => {
       <Divider style={{ margin: "10px 0" }} />
       {transportations.map((tr) => (
         <Row
-          onClick={() =>
-            onClickTransport(
-              tr.id,
-              tr.loadingAddress.loading,
-              tr.unloadingAddress.unloading
-            )
-          }
           className={activeTransportation === tr.id ? "active" : ""}
           align={"middle"}
           key={tr.id}
@@ -83,6 +77,13 @@ const CustomTable = () => {
           }}
         >
           <Col
+            onClick={() =>
+              onClickTransport(
+                tr.id,
+                tr.loadingAddress.loading,
+                tr.unloadingAddress.unloading
+              )
+            }
             style={{
               whiteSpace: "nowrap",
               overflowX: "auto",
@@ -100,8 +101,7 @@ const CustomTable = () => {
             }}
             span={8}
           >
-            {tr.loadingAddress.name}
-            {/*<SelectTask transportations={tr} loading />*/}
+            <SelectTask transportations={tr} loading />
           </Col>
           <Col
             style={{
@@ -111,8 +111,7 @@ const CustomTable = () => {
             }}
             span={8}
           >
-            {tr.unloadingAddress.name}
-            {/*<SelectTask transportations={tr} />*/}
+            <SelectTask transportations={tr} />
           </Col>
         </Row>
       ))}

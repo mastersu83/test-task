@@ -33,7 +33,11 @@ const SelectTask: React.FC<PropsType> = ({ transportations, loading }) => {
     <>
       <Select
         bordered={false}
-        defaultValue={"Выберите пункт"}
+        defaultValue={
+          loading
+            ? transportations.loadingAddress.name
+            : transportations.unloadingAddress.name
+        }
         style={{ width: "100%", border: "none" }}
       >
         {option.map((option) =>
