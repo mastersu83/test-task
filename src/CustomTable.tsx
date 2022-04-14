@@ -22,11 +22,9 @@ const CustomTable = () => {
   const [activeTransportation, setActiveTransportation] = useState<number>();
 
   const onClickTransport = (
-    id: number,
     loading: LoadingAddressType,
     unloading: UnLoadingAddressType
   ) => {
-    setActiveTransportation(id);
     dispatch(getLoadingCoordinates(loading));
     dispatch(getUnLoadingCoordinates(unloading));
   };
@@ -62,6 +60,7 @@ const CustomTable = () => {
       <Divider style={{ margin: "10px 0" }} />
       {transportations.map((tr) => (
         <Row
+          onClick={() => setActiveTransportation(tr.id)}
           className={activeTransportation === tr.id ? "active" : ""}
           align={"middle"}
           key={tr.id}
@@ -75,7 +74,7 @@ const CustomTable = () => {
         >
           <Col
             onClick={() =>
-              onClickTransport(tr.id, tr.loadingAddress, tr.unloadingAddress)
+              onClickTransport(tr.loadingAddress, tr.unloadingAddress)
             }
             style={{
               whiteSpace: "nowrap",

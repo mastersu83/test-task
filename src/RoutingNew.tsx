@@ -15,6 +15,7 @@ const RoutingNew: FC<PropsType> = ({ coordinates }) => {
     if (!map) return;
 
     const routingControl = L.Routing.control({
+      waypoints: points,
       addWaypoints: false,
       show: false,
       routeWhileDragging: false,
