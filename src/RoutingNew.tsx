@@ -9,18 +9,25 @@ type PropsType = {
 
 const RoutingNew: FC<PropsType> = ({ coordinates }) => {
   const map = useMap();
+  let points = [L.latLng(coordinates.loading), L.latLng(coordinates.unloading)];
 
   useEffect(() => {
     if (!map) return;
+
     const routingControl = L.Routing.control({
-      waypoints: [
-        L.latLng(coordinates.loading),
-        L.latLng(coordinates.unLoading),
-      ],
       addWaypoints: false,
       show: false,
       routeWhileDragging: false,
       fitSelectedRoutes: true,
+      plan: L.Routing.plan(points, {
+        createMarker: function (i, wp, n) {
+          return L.marker(wp.latLng, {
+            draggable: false,
+          })
+            .bindPopup(coordinates.name[i])
+            .openPopup();
+        },
+      }),
     }).addTo(map);
     return () => {
       map.removeControl(routingControl);

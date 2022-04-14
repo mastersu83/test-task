@@ -6,6 +6,10 @@ import {
   getUnLoadingCoordinates,
 } from "./redux/reducers/transportationSlice";
 import SelectTask from "./SelectTask";
+import {
+  LoadingAddressType,
+  UnLoadingAddressType,
+} from "./types/transportationType";
 
 const style = { padding: "8px 8px" };
 
@@ -19,8 +23,8 @@ const CustomTable = () => {
 
   const onClickTransport = (
     id: number,
-    loading: number[],
-    unloading: number[]
+    loading: LoadingAddressType,
+    unloading: UnLoadingAddressType
   ) => {
     setActiveTransportation(id);
     dispatch(getLoadingCoordinates(loading));
@@ -71,11 +75,7 @@ const CustomTable = () => {
         >
           <Col
             onClick={() =>
-              onClickTransport(
-                tr.id,
-                tr.loadingAddress.loading,
-                tr.unloadingAddress.unloading
-              )
+              onClickTransport(tr.id, tr.loadingAddress, tr.unloadingAddress)
             }
             style={{
               whiteSpace: "nowrap",

@@ -8,16 +8,17 @@ export type TransportationType = {
   unloadingAddress: UnLoadingAddressType;
 };
 
-type LoadingAddressType = {
+export type LoadingAddressType = {
   name: string;
-  loading: number[];
+  loading: LatLngTuple;
 };
-type UnLoadingAddressType = {
+export type UnLoadingAddressType = {
   name: string;
-  unloading: number[];
+  unloading: LatLngTuple;
 };
 
 export type CoordinatesType = {
+  name: string[];
   loading: LatLngTuple;
-  unLoading: LatLngTuple;
+  unloading: LatLngTuple;
 };

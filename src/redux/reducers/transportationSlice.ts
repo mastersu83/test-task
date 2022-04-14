@@ -1,8 +1,10 @@
 import {
   CoordinatesType,
+  LoadingAddressType,
   TransportationType,
+  UnLoadingAddressType,
 } from "../../types/transportationType";
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type InitialStateType = {
   transportations: TransportationType[];
@@ -78,8 +80,9 @@ const initialState: InitialStateType = {
     },
   ],
   coordinates: {
+    name: [],
     loading: [0, 0],
-    unLoading: [0, 0],
+    unloading: [0, 0],
   },
 };
 
@@ -87,11 +90,19 @@ const transportationSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
-    getLoadingCoordinates(state: InitialStateType, action: any) {
-      state.coordinates.loading = action.payload;
+    getLoadingCoordinates(
+      state: InitialStateType,
+      action: PayloadAction<LoadingAddressType>
+    ) {
+      state.coordinates.loading = action.payload.loading;
+      state.coordinates.name[0] = action.payload.name;
     },
-    getUnLoadingCoordinates(state: InitialStateType, action: any) {
-      state.coordinates.unLoading = action.payload;
+    getUnLoadingCoordinates(
+      state: InitialStateType,
+      action: PayloadAction<UnLoadingAddressType>
+    ) {
+      state.coordinates.unloading = action.payload.unloading;
+      state.coordinates.name[1] = action.payload.name;
     },
   },
 

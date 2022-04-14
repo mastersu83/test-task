@@ -1,6 +1,10 @@
 import { Select } from "antd";
 import React from "react";
-import { TransportationType } from "./types/transportationType";
+import {
+  LoadingAddressType,
+  TransportationType,
+  UnLoadingAddressType,
+} from "./types/transportationType";
 import { useAppDispatch, useAppSelector } from "./hooks/appHooks";
 import {
   getLoadingCoordinates,
@@ -20,10 +24,10 @@ const SelectTask: React.FC<PropsType> = ({ transportations, loading }) => {
     (state) => state.transportationSlice
   );
 
-  function handleChangeLoading(loading: any) {
+  function handleChangeLoading(loading: LoadingAddressType) {
     dispatch(getLoadingCoordinates(loading));
   }
-  function handleChangeUnLoading(unloading: any) {
+  function handleChangeUnLoading(unloading: UnLoadingAddressType) {
     dispatch(getUnLoadingCoordinates(unloading));
   }
 
@@ -41,23 +45,17 @@ const SelectTask: React.FC<PropsType> = ({ transportations, loading }) => {
         {option.map((option) =>
           loading ? (
             <Option key={option.id} value={option.loadingAddress.name}>
-              <div
-                onClick={() =>
-                  handleChangeLoading(option.loadingAddress.loading)
-                }
-              >
+              <label onClick={() => handleChangeLoading(option.loadingAddress)}>
                 {option.loadingAddress.name}
-              </div>
+              </label>
             </Option>
           ) : (
             <Option key={option.id} value={option.unloadingAddress.name}>
-              <div
-                onClick={() =>
-                  handleChangeUnLoading(option.unloadingAddress.unloading)
-                }
+              <label
+                onClick={() => handleChangeUnLoading(option.unloadingAddress)}
               >
                 {option.unloadingAddress.name}
-              </div>
+              </label>
             </Option>
           )
         )}
