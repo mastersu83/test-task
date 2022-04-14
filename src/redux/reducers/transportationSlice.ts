@@ -1,5 +1,4 @@
 import {
-  AddressesCoordinatesType,
   CoordinatesType,
   TransportationType,
 } from "../../types/transportationType";
@@ -7,8 +6,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type InitialStateType = {
   transportations: TransportationType[];
-  loadingAddresses: AddressesCoordinatesType[];
-  unloadingAddresses: AddressesCoordinatesType[];
   coordinates: CoordinatesType;
 };
 
@@ -78,50 +75,6 @@ const initialState: InitialStateType = {
         name: "Пункт разгрузки №5",
         unloading: [43.8493595, 44.0992834],
       },
-    },
-  ],
-  loadingAddresses: [
-    {
-      name: "Пункт загрузки №1",
-      coordinates: [44.0493595, 43.0592834],
-    },
-    {
-      name: "Пункт загрузки №2",
-      coordinates: [47.0593595, 43.0592834],
-    },
-    {
-      name: "Пункт загрузки №3",
-      coordinates: [44.0793595, 43.0592834],
-    },
-    {
-      name: "Пункт загрузки №4",
-      coordinates: [44.0893595, 43.0592834],
-    },
-    {
-      name: "Пункт загрузки №5",
-      coordinates: [44.0993595, 43.0592834],
-    },
-  ],
-  unloadingAddresses: [
-    {
-      name: "Пункт разгрузки №1",
-      coordinates: [43.8493595, 44.0592834],
-    },
-    {
-      name: "Пункт разгрузки №2",
-      coordinates: [43.8493595, 44.0692834],
-    },
-    {
-      name: "Пункт разгрузки №3",
-      coordinates: [43.8493595, 44.0792834],
-    },
-    {
-      name: "Пункт разгрузки №4",
-      coordinates: [43.8493595, 44.0892834],
-    },
-    {
-      name: "Пункт разгрузки №5",
-      coordinates: [43.8493595, 44.0992834],
     },
   ],
   coordinates: {

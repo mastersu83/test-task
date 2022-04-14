@@ -1,4 +1,4 @@
-import { LatLngLiteral, LatLngTuple } from "leaflet";
+import { LatLngTuple } from "leaflet";
 
 export type TransportationType = {
   key: number;
@@ -20,9 +20,4 @@ type UnLoadingAddressType = {
 export type CoordinatesType = {
   loading: LatLngTuple;
   unLoading: LatLngTuple;
-};
-
-export type AddressesCoordinatesType = {
-  name: string;
-  coordinates: number[];
 };

@@ -27,13 +27,6 @@ const CustomTable = () => {
     dispatch(getUnLoadingCoordinates(unloading));
   };
 
-  // useEffect(() => {
-  //   dispatch(getLoadingCoordinates(transportations[0].loadingAddress.loading));
-  //   dispatch(
-  //     getUnLoadingCoordinates(transportations[0].unloadingAddress.unloading)
-  //   );
-  // }, []);
-
   return (
     <>
       <Row align={"middle"} gutter={16} style={style}>

@@ -4,8 +4,6 @@ import transportationSlice from "./reducers/transportationSlice";
 export const setupState = () => {
   return configureStore({
     reducer: { transportationSlice },
-    // middleware: (getDefaultMiddleware) =>
-    //     getDefaultMiddleware().concat(categoryApi.middleware),
   });
 };
 
